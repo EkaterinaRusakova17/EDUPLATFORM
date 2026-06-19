@@ -73,36 +73,6 @@ docker compose down
 docker compose down -v
 ```
 
-## API
-
-Все тела запросов передаются в формате JSON, кроме загрузки изображений.
-
-Для защищённых маршрутов необходимо передавать JWT:
-
-```text
-Authorization: Bearer <access_token>
-```
-
-| Метод | Маршрут | Доступ |
-| --- | --- | --- |
-| POST | `/auth/register` | Открытый |
-| POST | `/auth/login` | Открытый |
-| GET | `/courses` | Открытый, кэшируется в Redis |
-| GET | `/courses/:id` | Открытый, кэшируется в Redis |
-| POST | `/courses` | Преподаватель |
-| PATCH | `/courses/:id` | Преподаватель-владелец курса |
-| DELETE | `/courses/:id` | Преподаватель-владелец курса |
-| POST | `/courses/:id/enroll` | Студент |
-| GET | `/courses/:courseId/lessons` | Открытый |
-| POST | `/courses/:courseId/lessons` | Преподаватель-владелец курса |
-| PATCH | `/lessons/:id` | Преподаватель-владелец курса |
-| DELETE | `/lessons/:id` | Преподаватель-владелец курса |
-| POST | `/upload/courses/:courseId/cover` | Владелец курса, multipart-поле `file` |
-| POST | `/upload/lessons/:lessonId/image` | Владелец курса, multipart-поле `file` |
-| GET | `/upload/images/:filename` | Открытый |
-
-Размер загружаемого файла ограничен 10 МБ. Разрешена загрузка только изображений.
-
 ## Проверка основного сценария
 
 ### 1. Регистрация преподавателя
