@@ -1,0 +1,15 @@
+{
+  "name": "eduplatform",
+  "version": "1.0.0",
+  "description": "Educational platform backend with asynchronous image processing",
+  "workspaces": [
+    "main-api",
+    "image-worker"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace main-api && npm run build --workspace image-worker",
+    "start:dev": "docker compose up --build",
+    "test": "npm run test --workspace main-api"
+  },
+  "private": true
+}
